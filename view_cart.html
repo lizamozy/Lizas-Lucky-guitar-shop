@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Cart </title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1> Cart </h1>
+    <lu>
+      <form action="/go_home" method='POST'>
+        <input type="Submit" value="Home">
+      </form>
+      {% for i in cart %}
+        {% if i.quant > 0%}
+        <p> Product: {{i.prod_name}}</p>
+        <li> Price: {{i.price}}</li>
+        <li> Color: {{i.prod_color}}</li>
+        <li> Quntity: {{i.quant}} </li>  
+      <form action="/cart/add" method='POST'>
+        <input type="hidden" name="prod_id" value="{{i.prod_id}}">
+        <input type="Submit" value="+">
+      </form>
+      <form action="/cart/remove" method='POST'>
+        <input type="hidden" name="prod_id" value="{{i.prod_id}}">
+        <input type="Submit" value="-">
+      </form>
+        {% endif %}
+      {% endfor %}
+      <p> Cart Total: {{ cart_total }} </p>
+    </lu>
+    <form action="/clear_cart" method='POST'>
+      <input type ="hidden" name="cart" value="cart">
+      <input type="Submit" value="Delete Cart">
+    </form>
+    <form action="/checkout" method='POST'>
+      <input type="Submit" value="Check Out">
+    </form>
+  </body>
+</html>
