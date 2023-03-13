@@ -11,15 +11,19 @@
         <input name ="query" type="text" placeholder="Search..">
         <input type="Submit" value="Search"> 
       </form>
+      {% if 'name' not in session %}
       <form action="/login" method='GET'>
         <button type="submit">Login</button>
       </form>
+      {% else %}
       <form action="/logout" method='GET'>
         <button type="submit">Logout</button>
       </form>
+     
       <form action="/view_orders" method='GET'>
         <button type="submit">View Orders</button>
       </form>
+       {% endif %}
     </div>
     </h1>
       <h4>
